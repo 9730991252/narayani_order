@@ -25,7 +25,7 @@
 
 <div class="item_main_box">
     {% for i in item %}
-        <div class="item_box">
+        <div class="item_box" style="height: fit-content;">
             <!-- img -->
               <div id="carouselExample" class="carousel slide " data-bs-ride="carousel">
                 <div class="carousel-inner">
@@ -60,8 +60,10 @@
             <!-- name -->
              <div class="p-2">
                  <div class="" style="display: flex; gap: 10px;justify-content: space-evenly;">
-                    <h3>{{i.name}}</h3>
-                    <div onclick="see_video('{{i.id}}')"><i class="fa fa-youtube-play" style="font-size:40px;color:red"></i></div>
+                    <h4><b>{{i.name}}</b></h4>
+                    {% if i.youtube_url != None %}
+                        <div onclick="see_video('{{i.id}}')"><i class="fa fa-youtube-play" style="font-size:40px;color:red"></i></div>
+                        {% endif %}
                 </div>
                  <p class="text-start" onclick="read_more('{{i.id}}')" id="main_description{{i.id}}" style="font-weight: 500;">{{i.description|slice:50}}... <button type="button" class="btn btn-sm text-danger">Read More</button></p>  
                  <div id="description{{i.id}}" style="display: none;" >
@@ -71,7 +73,7 @@
                 </div>
             </div>
             <!-- endname -->
-             <div class="footer" style="margin-top: -25px;">
+             <div class="footer">
                 {% price_and_weight i.id  %}
 
 
@@ -113,15 +115,6 @@
 
 </div>
 
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-<br><br>
 <br><br>
 <br><br>
 <br><br>

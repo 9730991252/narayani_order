@@ -18,13 +18,28 @@ def pending_order(request):
     else:
         return redirect('login')
     
-def accepted(request):
+def delivered(request):
     if request.session.has_key('owner_mobile'):
         mobile = request.session['owner_mobile']
         e = Employee.objects.filter(mobile=mobile).first()
         context={
             'employee':e,
-            'orders':OrderMaster.objects.filter(status='Accepted').order_by('-id')
+            'orders':OrderMaster.objects.filter(status='Delivered').order_by('-id')
+        }
+        return render(request, 'order/delivered.html',context)
+    else:
+        return redirect('login')
+    
+def accepted(request):
+    if request.session.has_key('owner_mobile'):
+        mobile = request.session['owner_mobile']
+        e = Employee.objects.filter(mobile=mobile).first()
+        order = OrderMaster.objects.filter(status='Accepted').order_by('-id')
+
+        
+        context={
+            'employee':e,
+            'orders':order
         }
         return render(request, 'order/accepted.html',context)
     else:
@@ -36,18 +51,7 @@ def download_invoice(request, order_filter):
     if request.session.has_key('owner_mobile'):
         mobile = request.session['owner_mobile']
         e = Employee.objects.filter(mobile=mobile).first()
-        # if 'accept'in request.POST:
-        #     a = OrderMaster.objects.filter(order_filter=order_filter).first()
-        #     a.accepted_by_id = e.id
-        #     a.status = 'Accepted'
-        #     a.save()
-        #     return redirect('accepted_view_order', order_filter=order_filter)
-        # if 'cancel'in request.POST:
-        #     a = OrderMaster.objects.filter(order_filter=order_filter).first()
-        #     a.accepted_by_id = e.id
-        #     a.status = 'Cancel'
-        #     a.save()
-        #     return redirect('pending_view_order', order_filter=order_filter)
+
         words_amount = num2words(OrderMaster.objects.filter(order_filter=order_filter).first().total_amount)
         
         context={
@@ -61,26 +65,48 @@ def download_invoice(request, order_filter):
         return redirect('login')
     
 @csrf_exempt
+def delivered_view_order(request, order_filter):
+    if request.session.has_key('owner_mobile'):
+        mobile = request.session['owner_mobile']
+        e = Employee.objects.filter(mobile=mobile).first()
+        if 'Cancel'in request.POST:
+            a = OrderMaster.objects.filter(order_filter=order_filter).first()
+            a.accepted_by_id = e.id
+            a.status = 'Cancel'
+            a.save()
+            return redirect('cancel_view_order', order_filter=order_filter)
+        order = OrderMaster.objects.filter(order_filter=order_filter).first()
+        context={
+            'employee':e,
+            'order_master':order,
+            'order_details':Order_detail.objects.filter(order_filter=order_filter)
+        }
+        return render(request, 'order/delivered_view_order.html',context)
+    else:
+        return redirect('login')
+@csrf_exempt
 def accepted_view_order(request, order_filter):
     if request.session.has_key('owner_mobile'):
         mobile = request.session['owner_mobile']
         e = Employee.objects.filter(mobile=mobile).first()
-        # if 'accept'in request.POST:
-        #     a = OrderMaster.objects.filter(order_filter=order_filter).first()
-        #     a.accepted_by_id = e.id
-        #     a.status = 'Accepted'
-        #     a.save()
-        #     return redirect('accepted_view_order', order_filter=order_filter)
-        # if 'cancel'in request.POST:
-        #     a = OrderMaster.objects.filter(order_filter=order_filter).first()
-        #     a.accepted_by_id = e.id
-        #     a.status = 'Cancel'
-        #     a.save()
-        #     return redirect('pending_view_order', order_filter=order_filter)
-        
+        if 'Delivered'in request.POST:
+            a = OrderMaster.objects.filter(order_filter=order_filter).first()
+            a.accepted_by_id = e.id
+            a.status = 'Delivered'
+            a.save()
+            return redirect('celivered_view_order', order_filter=order_filter)
+        if 'Cancel'in request.POST:
+            a = OrderMaster.objects.filter(order_filter=order_filter).first()
+            a.accepted_by_id = e.id
+            a.status = 'Cancel'
+            a.save()
+            return redirect('cancel_view_order', order_filter=order_filter)
+        order = OrderMaster.objects.filter(order_filter=order_filter).first()
+        if order.status == 'Delivered':
+            return redirect('delivered')
         context={
             'employee':e,
-            'order_master':OrderMaster.objects.filter(order_filter=order_filter).first(),
+            'order_master':order,
             'order_details':Order_detail.objects.filter(order_filter=order_filter)
         }
         return render(request, 'order/accepted_view_order.html',context)
