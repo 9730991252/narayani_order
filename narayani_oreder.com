@@ -1,3 +1,4 @@
+root
 cd narayani_order
 git pull
  systemctl daemon-reload
