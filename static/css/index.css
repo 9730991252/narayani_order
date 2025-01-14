@@ -63,10 +63,14 @@
 
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 450px) {
     .item_main_box{
+
         justify-content: center;
+        grid-template-columns: repeat(auto-fit, 95%);
     }
+
+
   }
 
 
