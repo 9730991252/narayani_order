@@ -13,6 +13,7 @@ def index(request):
         mobile = request.session['customer_mobile']
         customer = Customer.objects.filter(mobile=mobile,status=1).first()
         if customer == None:
+            customer = ''
             del request.session['customer_mobile']
         else:
             total_amount = total_price(customer.id)
@@ -45,3 +46,10 @@ def login(request):
         else:
             return redirect('/')
     return render(request, 'home/login.html')
+
+def logout(request):
+    if request.session.has_key('owner_mobile'):
+        del request.session['owner_mobile']
+    if request.session.has_key('customer_mobile'):
+        del request.session['customer_mobile']
+    return redirect('/')
