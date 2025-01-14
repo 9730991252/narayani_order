@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django import template
 from home.templatetags.home_tag import *
 register = template.Library()
+from num2words import num2words
 # Create your views here.
 def pending_order(request):
     if request.session.has_key('owner_mobile'):
@@ -29,6 +30,35 @@ def accepted(request):
     else:
         return redirect('login')
     
+    
+@csrf_exempt
+def download_invoice(request, order_filter):
+    if request.session.has_key('owner_mobile'):
+        mobile = request.session['owner_mobile']
+        e = Employee.objects.filter(mobile=mobile).first()
+        # if 'accept'in request.POST:
+        #     a = OrderMaster.objects.filter(order_filter=order_filter).first()
+        #     a.accepted_by_id = e.id
+        #     a.status = 'Accepted'
+        #     a.save()
+        #     return redirect('accepted_view_order', order_filter=order_filter)
+        # if 'cancel'in request.POST:
+        #     a = OrderMaster.objects.filter(order_filter=order_filter).first()
+        #     a.accepted_by_id = e.id
+        #     a.status = 'Cancel'
+        #     a.save()
+        #     return redirect('pending_view_order', order_filter=order_filter)
+        words_amount = num2words(OrderMaster.objects.filter(order_filter=order_filter).first().total_amount)
+        
+        context={
+            'employee':e,
+            'order_master':OrderMaster.objects.filter(order_filter=order_filter).first(),
+            'order_details':Order_detail.objects.filter(order_filter=order_filter),
+            'words_amount':words_amount
+        } 
+        return render(request, 'order/download_invoice.html',context)
+    else:
+        return redirect('login')
     
 @csrf_exempt
 def accepted_view_order(request, order_filter):

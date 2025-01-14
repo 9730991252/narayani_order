@@ -32,6 +32,7 @@ python3 manage.py migrate
 pip install django
 pip install pillow
 pip install django-embed-video
+pip install num2words
 
 
 ******** Install Gunicorn ******

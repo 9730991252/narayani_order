@@ -1,5 +1,7 @@
 {% extends 'home/base.html' %}
 {% block head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 {% endblock head %}
 {% block content %}
 {% include 'include/navbar.html' %}
@@ -52,16 +54,20 @@
                 </div>
               </div>
               <!-- endimg -->
-              {% video i.youtube_url '300x215' %}
+
+              <div id="video{{i.id}}" style="display: none;">{% video i.youtube_url '300x215'  %}</div>
             <!-- name -->
              <div class="p-2">
-                 <h3>{{i.name}}</h3>
+                 <div class="" style="display: flex; gap: 10px;justify-content: space-evenly;">
+                    <h3>{{i.name}}</h3>
+                    <div onclick="document.getElementById('video{{i.id}}').style.display = 'unset'; "><i class="fa fa-youtube-play" style="font-size:40px;color:red"></i></div>
+                </div>
                  <p class="text-start" onclick="read_more('{{i.id}}')" id="main_description{{i.id}}" style="font-weight: 500;">{{i.description|slice:50}}... <button type="button" class="btn btn-sm">Read More</button></p>  
                  <p class="text-start" onclick="read_less('{{i.id}}')" id="description{{i.id}}" style="display: none;">{{i.description}}<button type="button" class="btn btn-sm">Read Less</button></p>  
             </div>
             <!-- endname -->
              <div class="footer" style="margin-top: -25px;">
-                {% price_and_weight i.id %}
+                {% price_and_weight i.id  %}
 
 
                 <div id="mob{{i.id}}" style="display: none;">

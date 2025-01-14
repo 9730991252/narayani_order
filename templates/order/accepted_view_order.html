@@ -58,29 +58,22 @@
   {% endfor %}
   
   <h6 class="mt-6">Amount Rs.<b id="amount"></b></h6>
-  <script>amount.innerHTML = (Number('{{order_master.courier_charges}}') - Number('{{order_master.total_amount}}'))</script>
+  <script>amount.innerHTML = (Number('{{order_master.total_amount}}') - Number('{{order_master.courier_charges}}'))</script>
   
   
   <h6 class="mt-3">Courier Charges Rs.{{order_master.courier_charges}}</h6>
   
   <h6 class="mt-3">Total Amount Rs.{{order_master.total_amount}}</h6>
   
-{% if order_master.status == 'Pending' %}
 
-<div class="" style="display: flex; width: 90%;margin: 20px auto;justify-content: space-evenly;">
-    <div><form method="POST"><button type="submit"  class="btn btn-success" name="accept">Accept</button></form></div>
-    <div><form method="POST"><button type="submit"  class="btn btn-danger" name="cancel">Cancel</button></form></div>
-</div>
-
-{% elif order_master.status == 'Accepted' %}
 
 <div class="alert alert-success">This Order Is Accepted By '{{order_master.accepted_by.name}}'</div>
 
-{% elif order_master.status == 'Cancel' %}
 
-<div class="alert alert-danger">This Order Is Cancel By '{{order_master.accepted_by.name}}'</div>
 
-{% endif %}
+<a href="/order/download_invoice/{{order_master.order_filter}}" class="btn btn-danger">Doenload Invoice <i class="fa fa-download" aria-hidden="true"></i></a>
+
+
 </div>
 
 {% endblock content %}
