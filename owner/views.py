@@ -75,7 +75,11 @@ def category(request):
 def item_detail(request, id):
     if request.session.has_key('owner_mobile'):
         items = Item.objects.filter(id=id).first()
-        
+        if 'edit_item_embed_video'in request.POST:
+            embed_video = request.POST.get('embed_video')
+            items.youtube_url = embed_video
+            items.save()
+            return redirect('item_detail', id=id)
         if 'edit_item_name'in request.POST:
             new_name = request.POST.get('name')
             if new_name:

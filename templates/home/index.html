@@ -5,16 +5,16 @@
 {% include 'include/navbar.html' %}
 {% load static %}
 {% load home_tag %}
-
+{% load embed_video_tags %}
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
 <div class="container body">
 
 
 <div class="category_main_box">
     {% for c in category %}
-        <div class="category_box">
+        <button class="category_box">
             {{c.name}}
-        </div>
+        </button>
     {% endfor %}
 
 </div>
@@ -52,10 +52,11 @@
                 </div>
               </div>
               <!-- endimg -->
+              {% video i.youtube_url '300x115' %}
             <!-- name -->
              <div class="p-2">
                  <h3>{{i.name}}</h3>
-                 <p class="text-start" style="font-weight: 600;">{{i.description|slice:50}}...</p>
+                 <p class="text-start" style="font-weight: 600;">{{i.description|slice:50}}... <button type="button" class="btn btn-sm">Read More</button></p>  
             </div>
             <!-- endname -->
              <div class="footer" style="margin-top: -25px;">
@@ -204,13 +205,13 @@ function plus(id, price){
   
 }
 
-function minus(id){
+function minus(id, price){
     var qty = document.getElementById('qty'+id).value
   if(qty > 1){
-            qty--;
-        document.getElementById('qty'+id).value=qty;
-        p=qty*price
-        document.getElementById('price'+id).value=p;
+    qty--;
+    document.getElementById('qty'+id).value=qty;
+    p=qty*price
+    document.getElementById('total_amount'+id).innerText=p;
             //speak code
             
         const msg = new SpeechSynthesisUtterance;

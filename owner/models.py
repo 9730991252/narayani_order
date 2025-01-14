@@ -1,5 +1,6 @@
 from django.db import models
 from PIL import Image
+from embed_video.fields import EmbedVideoField 
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -8,6 +9,7 @@ class Category(models.Model):
 class Item(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
+    youtube_url = EmbedVideoField(null=True)
     image1 = models.ImageField(upload_to='item_images/', blank=True, null=True)
     image2 = models.ImageField(upload_to='item_images/', blank=True, null=True)
     image3 = models.ImageField(upload_to='item_images/', blank=True, null=True)

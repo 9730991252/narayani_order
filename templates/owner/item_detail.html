@@ -4,6 +4,7 @@
 {% block content %}
 {% include 'include/owner_menu.html' %}
 {% load static %}
+{% load embed_video_tags %}
 
 <div class="container">
 
@@ -21,7 +22,9 @@
 
 <div class="text-center">
     <p id="main_item_discription">{{item.description}} <button class="btn" onclick="edit_item_discription()"><i class="fas fa-pen-fancy    "></i></button></p>
-    <form method="POST" id="edit_item_discription" style="display: none;gap: 10px;justify-content: center;align-items: center;"><input type="text" value="{{item.description}}" name="description" ><button style="width: 20px;height: 20px;display: flex;justify-content: center;align-items: center;" type="submit" name="edit_item_description" class="btn btn-success btn-sm" onclick="location.reload()"><i class="fa fa-check" aria-hidden="true"></i></button></form>
+    <form method="POST" id="edit_item_discription" style="display: none;gap: 10px;justify-content: center;align-items: center;">
+      <textarea name="description" id="" cols="50" rows="10">{{item.description}}</textarea>
+     <button style="width: 20px;height: 20px;display: flex;justify-content: center;align-items: center;" type="submit" name="edit_item_description" class="btn btn-success btn-sm" onclick="location.reload()"><i class="fa fa-check" aria-hidden="true"></i></button></form>
     <script>
       function edit_item_discription(){
         document.getElementById('edit_item_discription').style.display = 'flex'
@@ -29,6 +32,20 @@
       }
     </script>
 </div>
+ 
+<div class="text-center">
+    <p id="main_item_embed_video">{% video item.youtube_url '220x200' %} <i class="fas fa-video    "></i> <button class="btn" onclick="edit_item_embed_video()"><i class="fas fa-pen-fancy    "></i></button></p>
+    <form method="POST" id="edit_item_embed_video" style="display: none;gap: 10px;justify-content: center;align-items: center;">
+      <textarea name="embed_video" id="" cols="50" rows="2">{{item.youtube_url}}</textarea>
+     <button style="width: 20px;height: 20px;display: flex;justify-content: center;align-items: center;" type="submit" name="edit_item_embed_video" class="btn btn-success btn-sm" onclick="location.reload()"><i class="fa fa-check" aria-hidden="true"></i></button></form>
+    <script>
+      function edit_item_embed_video(){
+        document.getElementById('edit_item_embed_video').style.display = 'flex'
+        document.getElementById('main_item_embed_video').style.display = 'none'
+      }
+    </script>
+</div>
+<br>
 
 <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, 380px);">
 
