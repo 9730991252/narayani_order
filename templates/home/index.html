@@ -56,7 +56,8 @@
             <!-- name -->
              <div class="p-2">
                  <h3>{{i.name}}</h3>
-                 <p class="text-start" style="font-weight: 600;">{{i.description|slice:50}}... <button type="button" class="btn btn-sm">Read More</button></p>  
+                 <p class="text-start" onclick="read_more('{{i.id}}')" id="main_description{{i.id}}" style="font-weight: 500;">{{i.description|slice:50}}... <button type="button" class="btn btn-sm">Read More</button></p>  
+                 <p class="text-start" onclick="read_less('{{i.id}}')" id="description{{i.id}}" style="display: none;">{{i.description}}<button type="button" class="btn btn-sm">Read Less</button></p>  
             </div>
             <!-- endname -->
              <div class="footer" style="margin-top: -25px;">
@@ -105,6 +106,15 @@
 <br><br>
 <!----------------------------------------------------------------------------->
 <script>
+function read_more(id){
+    document.getElementById('main_description'+id).style.display = 'none';
+    document.getElementById('description'+id).style.display = 'unset';
+}
+function read_less(id){
+    document.getElementById('main_description'+id).style.display = 'unset';
+    document.getElementById('description'+id).style.display = 'none';
+}
+
 last_price_and_weight_id = ''
 last_qty_box_id = ''
 
@@ -168,6 +178,7 @@ function check_customer_sesion(p_id, prise_and_weight_id){
                 prise_and_weight_id:prise_and_weight_id
                 },
                 success: function(res){
+
                     document.getElementById('qty_box'+p_id).innerHTML = res.t                    
                     if (last_qty_box_id){
                         if (last_qty_box_id != p_id){
@@ -231,6 +242,8 @@ function check_customer(id) {
                 prise_and_weight_id:new_prise_and_weight_id
             },
                 success: function(res){
+                    document.getElementById('mob'+last_id).style.display = 'none';
+                
                     document.getElementById('qty_box'+id).innerHTML = res.t                    
                     if (last_qty_box_id){
                         if (last_qty_box_id != id){
