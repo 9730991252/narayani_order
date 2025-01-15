@@ -23,7 +23,8 @@ def index(request):
         'category': Category.objects.filter(status=1),
         'item':Item.objects.filter(status=1),
         'customer':customer,
-        'total_amount':total_amount
+        'total_amount':total_amount,
+        'cart_qty':Cart.objects.filter(customer_id=customer.id).count()
         
     }
     return render(request, 'home/index.html', contaxt)

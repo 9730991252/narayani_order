@@ -7,7 +7,7 @@
         </div>
         <div class=""><button type="button" onclick="plus('{{i.id}}','{{prisce_and_weight.price}}')" class="btn btn-success px-3">+</button></div>
       </div>
-      <div class=""> <button type="submit" class="btn btn-danger" onclick="add_to_cart('{{i.id}}','{{prisce_and_weight.id}}')">Add To Cart</button> </div>
+      <div class=""> <button type="submit" class="btn btn-danger" onclick="add_to_cart('{{i.id}}','{{prisce_and_weight.id}}', '{{customer.id}}')">Add To Cart</button> </div>
     </div>
     <div class="text-center">
         <b>Rs. </b><b id="total_amount{{i.id}}">{{prisce_and_weight.price}}</b>

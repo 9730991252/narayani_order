@@ -94,7 +94,7 @@ def accepted_view_order(request, order_filter):
             a.accepted_by_id = e.id
             a.status = 'Delivered'
             a.save()
-            return redirect('celivered_view_order', order_filter=order_filter)
+            return redirect('delivered_view_order', order_filter=order_filter)
         if 'Cancel'in request.POST:
             a = OrderMaster.objects.filter(order_filter=order_filter).first()
             a.accepted_by_id = e.id
@@ -103,7 +103,7 @@ def accepted_view_order(request, order_filter):
             return redirect('cancel_view_order', order_filter=order_filter)
         order = OrderMaster.objects.filter(order_filter=order_filter).first()
         if order.status == 'Delivered':
-            return redirect('delivered')
+            return redirect('delivered_view_order', order_filter=order_filter)
         context={
             'employee':e,
             'order_master':order,

@@ -95,11 +95,11 @@
 
 {% else %}
 <div class="text-center" type="button" class="btn ms-3" data-bs-toggle="modal" data-bs-target="#edit_Image" >
-  <img src="{{item.image1.url}}" alt="No Image">
-  <img src="{% if item.image2.url != None %}{{item.image2.url}}{% endif %}" alt="No Image">
-  <img src="{% if item.image3.url != None %}{{item.image3.url}}{% endif %}" alt="No Image">
-  <img src="{% if item.image4.url != None %}{{item.image4.url}}{% endif %}" alt="No Image">
-  <img src="{% if item.image5.url != None %}{{item.image5.url}}{% endif %}" alt="No Image">
+  <img style="width: 350px;height: 350px;" src="{{item.image1.url}}" alt="No Image">
+  <img style="width: 350px;height: 350px;" src="{% if item.image2.url != None %}{{item.image2.url}}{% endif %}" alt="No Image">
+  <img style="width: 350px;height: 350px;" src="{% if item.image3.url != None %}{{item.image3.url}}{% endif %}" alt="No Image">
+  <img style="width: 350px;height: 350px;" src="{% if item.image4.url != None %}{{item.image4.url}}{% endif %}" alt="No Image">
+  <img style="width: 350px;height: 350px;" src="{% if item.image5.url != None %}{{item.image5.url}}{% endif %}" alt="No Image">
 </div>
 
 

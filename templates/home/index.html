@@ -111,7 +111,7 @@
 
     <div><input type="text" class="form-control w-100" placeholder="Search Item"></div>
     <div> <b>Rs.</b><b id="total_amount">{{total_amount}}</b></div>
-    <div><a href="/order/cart/" id="place_order_btn" class="btn btn-warning btn-sm" {% if total_amount == 0 %} style="display: none;" {% endif %} >Place Order</a></div>
+    <div><a href="/order/cart/" id="place_order_btn" class="btn btn-warning btn-sm" {% if total_amount == 0 %} style="pointer-events: none;" {% endif %} > <i class="fa-solid fa-cart-shopping"></i> <b id="cart_qty" style="border-radius: 50%; padding: 2px;background-color: red;color: white;">{{cart_qty}}</b> </a></div>
 
 </div>
 
@@ -143,7 +143,7 @@ function read_less(id){
 last_price_and_weight_id = ''
 last_qty_box_id = ''
 
-function add_to_cart(item_id, prise_and_weight_id) {
+function add_to_cart(item_id, prise_and_weight_id, customer_id) {
     qty = document.getElementById('qty'+item_id).value
     $.ajax({
         url: "{% url 'add_to_cart' %}",
@@ -152,12 +152,14 @@ function add_to_cart(item_id, prise_and_weight_id) {
             item_id:item_id,
             qty:qty,
             prise_and_weight_id:prise_and_weight_id,
-            customer_id:'{{ customer.id }}'
+            customer_id:customer_id
         },
         success: function(res){
             document.getElementById('total_amount').innerText = res.total_amount
             document.getElementById('qty_box'+item_id).innerHTML = `<div class="mt-2 alert alert-success">This Item is added to Cart</div>`                    
             document.getElementById('place_order_btn').style.display = 'unset';
+            document.getElementById('cart_qty').innerText = res.cart_qty;
+            location.reload()
         }
     });
 }
