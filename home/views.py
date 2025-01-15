@@ -8,10 +8,12 @@ from sunil.models import *
 # Create your views here.
 def index(request):
     customer = ''
+    customer_id = 0
     total_amount = 0
     if request.session.has_key('customer_mobile'):
         mobile = request.session['customer_mobile']
         customer = Customer.objects.filter(mobile=mobile,status=1).first()
+        customer_id = customer.id if customer else 0
         if customer == None:
             customer = ''
             del request.session['customer_mobile']
@@ -24,7 +26,7 @@ def index(request):
         'item':Item.objects.filter(status=1),
         'customer':customer,
         'total_amount':total_amount,
-        'cart_qty':Cart.objects.filter(customer_id=customer.id).count()
+        'cart_qty':Cart.objects.filter(customer_id=customer_id).count()
         
     }
     return render(request, 'home/index.html', contaxt)
