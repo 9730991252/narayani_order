@@ -1,10 +1,23 @@
 from django.db import models
 from PIL import Image
+from io import BytesIO
+from django.core.files import File
+# Create your models here.
 from embed_video.fields import EmbedVideoField 
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(max_length=255)
     status = models.IntegerField(default=1)
+    
+def compress(image):
+    im = Image.open(image)
+    rgb_im = im.convert("RGB")
+    
+    im_io = BytesIO()
+    rgb_im.save(im_io, format=im.format, quality=50)
+    new_image = File(im_io, name=image.name)
+    return new_image
+    
     
 class Item(models.Model):
     name = models.CharField(max_length=255)
@@ -16,33 +29,29 @@ class Item(models.Model):
     image4 = models.ImageField(upload_to='item_images/', blank=True, null=True)
     image5 = models.ImageField(upload_to='item_images/', blank=True, null=True)
     status = models.IntegerField(default=1)
-    def save(self, *args,**kwargs):
-        super().save(*args,**kwargs)
-        
-        image1 = Image.open(self.image1.path)
-        output_size = (350,350)
-        image1.thumbnail(output_size)
-        image1.save(self.image1.path)
+    
+    def save (self, *args, **kwargs):
+        new_image1 = compress(self.image1)
+        self.image1 = new_image1
         
         if self.image2:
-            image2 = Image.open(self.image2.path)
-            image2.thumbnail(output_size)
-            image2.save(self.image2.path)
-        
+            new_image2 = compress(self.image2)
+            self.image2 = new_image2
+            
         if self.image3:
-            image3 = Image.open(self.image3.path)
-            image3.thumbnail(output_size)
-            image3.save(self.image3.path)
+            new_image3 = compress(self.image3)
+            self.image3 = new_image3
         
         if self.image4:
-            image4 = Image.open(self.image4.path)
-            image4.thumbnail(output_size)
-            image4.save(self.image4.path)
+            new_image4 = compress(self.image4)
+            self.image4 = new_image4
         
         if self.image5:
-            image5 = Image.open(self.image5.path)
-            image5.thumbnail(output_size)
-            image5.save(self.image5.path)
+            new_image5 = compress(self.image5)
+            self.image5 = new_image5
+        
+        super().save(*args, **kwargs)
+
             
 class Price_and_weight(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE, null=True)

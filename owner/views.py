@@ -1,8 +1,12 @@
 from django.shortcuts import render, redirect
 from .models import *
 from django.views.decorators.csrf import csrf_exempt
+from PIL import Image
+import io
 
 # Create your views here.
+
+
 def print_address(request):
     if request.session.has_key('owner_mobile'):
         return render(request, 'owner/print_address.html')
@@ -23,11 +27,11 @@ def item(request):
         if request.method == 'POST':
             name = request.POST.get('name')
             description = request.POST.get('description')
-            image = request.FILES.get('image')
+            img = request.FILES.get('image')
             Item(
                 name=name,
                 description=description,
-                image1 = image,
+                image1 = img,
                 ).save()
             return redirect('item')
         context = {
@@ -70,6 +74,8 @@ def category(request):
         return render(request, 'owner/category.html', context)
     else:
         return redirect('login')
+    
+
     
 @csrf_exempt
 def item_detail(request, id):
@@ -129,6 +135,7 @@ def item_detail(request, id):
             image1 = request.FILES.get('image1')
             if image1 is None:
                 image1 = items.image1
+                
             image2 = request.FILES.get('image2')
             if image2 is None:
                 image2 = items.image2
