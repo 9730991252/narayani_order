@@ -53,60 +53,33 @@
 
 
 <style>
-  img{
-    margin: 10px;
-    border: 1px solid black;
-    width: 100%;
-    height: 100%;
+  .modal-body img{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
   }
-    </style>
-
-{% if item.image2.url != None and item.image3.url != None and item.image4.url != None and item.image5.url != None %}
-
-<div id="carouselExampleRide" style="overflow: hidden; position: relative; width: 300px;height: 300px;" class="carousel slide" data-bs-ride="true" >
-  <div class="carousel-inner">
-    <button type="button" style="position: absolute;right: 0px;top: 10px;z-index: 23;padding: 10px;" data-bs-toggle="modal" data-bs-target="#edit_Image"><i class="fas fa-edit    "></i></button>
-    <div class="carousel-item active">
-      <img src="{{item.image1.url}}" class="d-block" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="{{item.image2.url}}" class="d-block" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="{{item.image3.url}}" class="d-block" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="{{item.image4.url}}" class="d-block" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="{{item.image5.url}}" class="d-block" alt="...">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
+  #add_image_box{
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    img{
+      height: 90%;
+      width: 90%;
+      padding: 3px;
+      object-fit: cover;
+    }
+  }
+</style>
+<div class="text-center" style="display: flex;flex-wrap: wrap;justify-content: center;">
+  <div class="text-center"  id="add_image_box" type="button" class="btn ms-3" data-bs-toggle="modal" data-bs-target="#edit_Image1" ><img src="{% if item.image1.url != None %}{{item.image1.url}}{% endif %}" alt="Add Image1">  </div>
+  <div class="text-center"  id="add_image_box" type="button" class="btn ms-3" data-bs-toggle="modal" data-bs-target="#edit_Image2" ><img src="{% if item.image2.url != None %}{{item.image2.url}}{% endif %}" alt="Add Image2"></div>
+  <div class="text-center"  id="add_image_box" type="button" class="btn ms-3" data-bs-toggle="modal" data-bs-target="#edit_Image3" ><img src="{% if item.image3.url != None %}{{item.image3.url}}{% endif %}" alt="Add Image3"></div>
+  <div class="text-center"  id="add_image_box" type="button" class="btn ms-3" data-bs-toggle="modal" data-bs-target="#edit_Image4" ><img src="{% if item.image4.url != None %}{{item.image4.url}}{% endif %}" alt="Add Image4"></div>
+  <div class="text-center"  id="add_image_box" type="button" class="btn ms-3" data-bs-toggle="modal" data-bs-target="#edit_Image5" ><img src="{% if item.image5.url != None %}{{item.image5.url}}{% endif %}" alt="Add Image5"></div>
 </div>
 
-
-{% else %}
-<div class="text-center" type="button" class="btn ms-3" data-bs-toggle="modal" data-bs-target="#edit_Image" >
-  <img style="width: 350px;height: 350px;" src="{{item.image1.url}}" alt="No Image">
-  <img style="width: 350px;height: 350px;" src="{% if item.image2.url != None %}{{item.image2.url}}{% endif %}" alt="No Image">
-  <img style="width: 350px;height: 350px;" src="{% if item.image3.url != None %}{{item.image3.url}}{% endif %}" alt="No Image">
-  <img style="width: 350px;height: 350px;" src="{% if item.image4.url != None %}{{item.image4.url}}{% endif %}" alt="No Image">
-  <img style="width: 350px;height: 350px;" src="{% if item.image5.url != None %}{{item.image5.url}}{% endif %}" alt="No Image">
-</div>
-
-
-{% endif %}
-
-  <!-- Modal -->
-  <div class="modal fade" id="edit_Image" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- Modal image1 -->
+  <div class="modal fade" id="edit_Image1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -115,32 +88,15 @@
         <div class="modal-body">
           <form method="POST" enctype="multipart/form-data">{% csrf_token %}
             <div class="mb-3">
-                <label for="">Image1</label>
-                <img src="{{item.image1.url}}" alt="No Image">
+                <label for="">Image1</label><br>
+                <img src="{% if item.image1.url != None %}{{item.image1.url}}{% endif %}" alt="No Image">
                 <input type="file" name="image1" placeholder="Image" class="form-control" value="{{item.image}}">
-              </div>
-              <div class="mb-3">
-                <label for="">Image2</label>
-                <img src="{% if item.image2.url != None %}{{item.image2.url}}{% endif %}" alt="No Image">
-                <input type="file" name="image2" placeholder="Image" class="form-control" value="{{item.image}}">
-              </div>
-              <div class="mb-3">
-                <label for="">Image3</label>
-                <img src="{% if item.image3.url != None %}{{item.image3.url}}{% endif %}" alt="No Image">
-                <input type="file" name="image3" placeholder="Image" class="form-control" value="{{item.image}}">
-              </div>
-              <div class="mb-3">
-                <label for="">Image4</label>
-                <img src="{% if item.image4.url != None %}{{item.image4.url}}{% endif %}" alt="No Image">
-                <input type="file" name="image4" placeholder="Image" class="form-control" value="{{item.image}}">
-              </div>
-              <div class="mb-3">
-                <label for="">Image5</label>
-                <img src="{% if item.image5.url != None %}{{item.image5.url}}{% endif %}" alt="No Image">
-                <input type="file" name="image5" placeholder="Image" class="form-control" value="{{item.image}}">
-              </div>                                                  
+            </div>                                                  
             <div class="mb-3">                                      
-                <button type="submit" class="btn btn-primary" name="Edit_item">Edit</button>
+                <button type="submit" class="btn btn-primary" name="Edit_item_image1" onclick="this.style.display = 'none';spinner1.style.display = 'flex'">Submit</button>
+                <div class="spinner-border text-dark" style="display: none;" id="spinner1" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
             </div>
           </form>
         </div>
@@ -150,6 +106,120 @@
       </div>
     </div>
   </div>
+  <!-- Modal image2 -->
+  <div class="modal fade" id="edit_Image2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+            <div class="mb-3">
+                <label for="">Image2</label><br>
+                <img src="{% if item.image2.url != None %}{{item.image2.url}}{% endif %}" alt="No Image">
+                <input type="file" name="image2" placeholder="Image" class="form-control" value="{{item.image2}}">
+            </div>                                                  
+            <div class="mb-3">                                      
+                <button type="submit" class="btn btn-primary" name="Edit_item_image2" onclick="this.style.display = 'none';spinner2.style.display = 'flex'">Submit</button>
+                <div class="spinner-border text-dark" style="display: none;" id="spinner2" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal image3 -->
+  <div class="modal fade" id="edit_Image3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+            <div class="mb-3">
+                <label for="">Image3</label><br>
+                <img src="{% if item.image3.url != None %}{{item.image3.url}}{% endif %}" alt="No Image">
+                <input type="file" name="image3" placeholder="Image" class="form-control" value="{{item.image3}}">
+            </div>                                                  
+            <div class="mb-3">                                      
+                <button type="submit" class="btn btn-primary" name="Edit_item_image3" onclick="this.style.display = 'none';spinner3.style.display = 'flex'">Submit</button>
+                <div class="spinner-border text-dark" style="display: none;" id="spinner3" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal image4 -->
+  <div class="modal fade" id="edit_Image4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+            <div class="mb-3">
+                <label for="">Image4</label><br>
+                <img src="{% if item.image4.url != None %}{{item.image4.url}}{% endif %}" alt="No Image">
+                <input type="file" name="image4" placeholder="Image" class="form-control" value="{{item.image4}}">
+            </div>                                                  
+            <div class="mb-3">                                      
+                <button type="submit" class="btn btn-primary" name="Edit_item_image4" onclick="this.style.display = 'none';spinner4.style.display = 'flex'">Submit</button>
+                <div class="spinner-border text-dark" style="display: none;" id="spinner4" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal image5 -->
+  <div class="modal fade" id="edit_Image5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+            <div class="mb-3">
+                <label for="">Image5</label><br>
+                <img src="{% if item.image5.url != None %}{{item.image5.url}}{% endif %}" alt="No Image">
+                <input type="file" name="image5" placeholder="Image" class="form-control" value="{{item.image3}}">
+            </div>                                                  
+            <div class="mb-3">                                      
+                <button type="submit" class="btn btn-primary" name="Edit_item_image5" onclick="this.style.display = 'none';spinner5.style.display = 'flex'">Submit</button>
+                <div class="spinner-border text-dark" style="display: none;" id="spinner5" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
 
 <!------------------------end image sec-------------------------->

@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'customer',
     'order',
     'sunil',
-'embed_video',
+    'embed_video',
 ]
 
 MIDDLEWARE = [
