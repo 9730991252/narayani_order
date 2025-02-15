@@ -80,6 +80,8 @@ def total_price(session_id):
     return total_amount
 
 def login(request):
+    if request.session.has_key('owner_mobile'):
+        return redirect('owner_home')
     if request.method == 'POST':
         mobile = request.POST.get('number')
         pin = request.POST.get('pin')

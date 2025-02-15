@@ -3,6 +3,7 @@ from .models import *
 from django.views.decorators.csrf import csrf_exempt
 from PIL import Image
 import io
+from order.models import *
 
 # Create your views here.
 
@@ -19,6 +20,17 @@ def owner_home(request):
         context={
         }
         return render(request, 'owner/owner_home.html')
+    else:
+        return redirect('login')
+    
+def print_bill_customer_address(request, order_filter):
+    if request.session.has_key('owner_mobile'):
+        om = OrderMaster.objects.filter(order_filter=order_filter).first()
+        
+        context={
+            'om':om
+        }
+        return render(request, 'owner/print_bill_customer_address.html', context)
     else:
         return redirect('login')
     
@@ -72,7 +84,7 @@ def category(request):
         return render(request, 'owner/category.html', context)
     else:
         return redirect('login')
-    
+     
 def compress_image(image):
     im = Image.open(image)
     im_io = io.BytesIO()
