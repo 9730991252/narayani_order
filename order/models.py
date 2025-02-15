@@ -4,10 +4,12 @@ from owner.models import *
 from sunil.models import *
 # Create your models here.
 class Cart(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True)
+    session_id = models.CharField(max_length=100, null=True, blank=True)
     item = models.ForeignKey(Item, on_delete=models.CASCADE, null=True)
     price_and_weight = models.ForeignKey(Price_and_weight, on_delete=models.CASCADE, null=True)
     qty = models.IntegerField()
+    date = models.DateField(auto_now_add=True, null=True)
+    
     
 STATUS_CHOICES = (
   ('Accepted','Accepted'),
