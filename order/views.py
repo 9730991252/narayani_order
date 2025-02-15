@@ -104,6 +104,8 @@ def accepted_view_order(request, order_filter):
         order = OrderMaster.objects.filter(order_filter=order_filter).first()
         if order.status == 'Delivered':
             return redirect('delivered_view_order', order_filter=order_filter)
+        if order.status == 'Pending':
+            return redirect('pending_view_order', order_filter=order_filter)
         context={
             'employee':e,
             'order_master':order,
