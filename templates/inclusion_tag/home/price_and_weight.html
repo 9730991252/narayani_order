@@ -1,9 +1,9 @@
 
 <div div style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
     {% for p in price_and_weight %}
-        <div id="price_and_weight_btn{{p.id}}" onclick="check_customer_sesion('{{item_id}}','{{p.id}}')" style="scale: 0.90; cursor: pointer;padding: 3px;border: 1px solid rgb(102, 102, 102);border-radius: 10px;">
+        <div id="price_and_weight_btn{{p.id}}" onclick="check_customer_sesion('{{item_id}}','{{p.id}}')" style="scale: 0.80; cursor: pointer;padding: 3px;border: 1px solid rgb(102, 102, 102);border-radius: 10px;">
             <div style="display: flex; justify-content: space-between;flex-direction: column;">
-                <div><b>{{p.weight}}{{p.unit}}</b></div>
+                <div><b style="color: rgb(82, 82, 82);">{{p.weight}}{{p.unit}}</b></div>
                 <div id="price{{p.item_id}}">Rs.{{p.price}}</div>
             </div>
         </div>

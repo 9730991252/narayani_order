@@ -62,7 +62,7 @@
             <!-- name -->
              <div class="p-2">
                 <div class="" style="display: flex; gap: 10px;justify-content: space-evenly;">
-                    <h5><b>{{i.name}}</b></h5>
+                    <h5><b style="color: #303030;">{{i.name}}</b></h5>
                 </div>
                  <div class="" style="display: flex; gap: 10px;justify-content: space-evenly;">
                     {% if i.youtube_url != None %}
@@ -71,11 +71,11 @@
                     <div><a href="https://api.whatsapp.com/send?phone=&text=https://www.shipiamti.com/" target="_blank"><i class="fa-brands fa-whatsapp" style="color: green; font-size: 25px;"></i></a></div>
 
                     </div>
-                 <p class="text-start" onclick="read_more('{{i.id}}')" id="main_description{{i.id}}" style="font-weight: 500;">{{i.description|slice:30}}... <button type="button" class="btn btn-sm text-danger">Read More</button></p>  
+                 <p class="text-start mb-3" onclick="read_more('{{i.id}}')" id="main_description{{i.id}}" style="font-weight: 500;">{{i.description|slice:30}}... <button type="button" class="btn btn-sm text-danger">Read More</button></p>  
                  <div id="description{{i.id}}" style="display: none;" >
                      <p class="text-start" onclick="read_less('{{i.id}}')" >{{i.description}}</p>  
                      {% video i.youtube_url '280x200'  %}
-                     <button type="button" onclick="read_less('{{i.id}}')" class="btn btn-sm text-success">Read Less</button>
+                     <button type="button" onclick="read_less('{{i.id}}')" class="btn btn-sm text-success mb-3">Read Less</button>
                 </div>
             </div>
             <!-- endname -->
