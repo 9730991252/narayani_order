@@ -1,14 +1,41 @@
-
-<div div style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
+<style>
+    .price_and_weight_btn{
+      cursor: pointer;
+      padding: 3px;
+      border: 1px solid rgb(102, 102, 102);
+      border-radius: 10px;
+    }
+    .main_price_and_weight_btn{
+      padding-left: 10px;
+      padding-right: 10px;
+      display: grid;
+      gap: 10px;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    @media only screen and (max-width: 450px) {
+      .main_price_and_weight_btn{
+        padding-left: 1px;
+        padding-right: 1px;
+        gap: 5px;
+    }
+    .price_and_weight_btn{
+      font-size: 10px;
+      padding: 0px;
+    }
+  }
+</style>
+<div class="main_price_and_weight_btn">
     {% for p in price_and_weight %}
-        <div id="price_and_weight_btn{{p.id}}" onclick="check_customer_sesion('{{item_id}}','{{p.id}}')" style="scale: 0.80; cursor: pointer;padding: 3px;border: 1px solid rgb(102, 102, 102);border-radius: 10px;">
-            <div style="display: flex; justify-content: space-between;flex-direction: column;">
-                <div><b style="color: rgb(82, 82, 82);">{{p.weight}}{{p.unit}}</b></div>
-                <div id="price{{p.item_id}}">Rs.{{p.price}}</div>
-            </div>
-        </div>
+    <div class="price_and_weight_btn" id="price_and_weight_btn{{p.id}}" onclick="check_customer_sesion('{{item_id}}','{{p.id}}')">
+      <div style="display: flex; justify-content: space-between;flex-direction: column;">
+        <div><b style="color: rgb(82, 82, 82);">{{p.weight}}{{p.unit}}</b></div>
+        <div id="price{{p.item_id}}">Rs.{{p.price}}</div>
+      </div>
+    </div>
+    {% endfor %}
 
-        <div id="item_detail{{p.id}}"  style="display: none;">
+    {% for p in price_and_weight %}
+        <div id="item_detail{{p.id}}"  style="display: none;margin-top: -30px;">
           <br>
           <div style="display: grid;grid-template-columns: 1fr 2fr 1fr;gap: 0px;">
             <div class=" "><button type="button" onclick="minus('{{i.id}}','{{p.price}}','{{p.sell_minimum_quantity}}')" class="btn btn-success px-3">-</button></div>
