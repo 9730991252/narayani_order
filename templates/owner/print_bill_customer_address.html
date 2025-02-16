@@ -75,9 +75,10 @@
             <div class="address p-2" style="border-top: 1px solid black;">
                 <h6><b style="font-weight: 900;">To ,</b></h6>
                 <div class="textarea" oninput="check_address()" >
-                    {{om.customer.name}} <br>
-                    {{om.customer.house_no}}, {{om.customer.post}},<br> {{om.customer.landmark}}, 
-                    Tal - {{om.customer.taluka}}-{{om.customer.pin_code}}, Dist-{{om.customer.district}},Maharashtra <br>
+                    <b>{{om.customer.name}}</b> <br>
+                    {{om.customer.house_no}},<br>
+                    {{om.customer.post}},<br> {{om.customer.landmark}}, 
+                    {{om.customer.taluka}}-{{om.customer.pin_code}}, {{om.customer.district}},Maharashtra <br>
                     Mo- {{om.customer.mobile}}
 
                 </div>
