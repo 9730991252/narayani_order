@@ -41,6 +41,8 @@ def index(request):
 def view_customer_order(request, order_filter):
     if request.session.has_key('customer_mobile'):
         mobile = request.session['customer_mobile']
+        if request.session.has_key('owner_mobile'):
+            del request.session['owner_mobile']
         customer = Customer.objects.filter(mobile=mobile,status=1).first()
     else:
         return redirect('/')

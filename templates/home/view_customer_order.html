@@ -59,7 +59,8 @@ document.getElementById('t{{p.id}}').innerHTML = Number('{{p.qty}}') * Number('{
 
 <h6 class="mt-3">Amount Rs.{{order_master.total_amount}}</h6>
 <h6 class="mt-3">Courier Charges Rs.{{order_master.courier_charges}}</h6>
-<h6 class="mt-3">Total Amount Rs.{{order_master.total_amount|add:order_master.courier_charges}}</h6>
+<h6 class="mt-3">Total Amount Rs.{{order_master.total_amount|add:order_master.courier_charges}} <!--a href="" class="btn btn-danger">Pay</a--> </h6>
+<a href="/order/download_invoice/{{order_master.order_filter}}" class="btn btn-danger">Doenload Invoice <i class="fa fa-download" aria-hidden="true"></i></a>
 
 
 
@@ -69,7 +70,7 @@ document.getElementById('t{{p.id}}').innerHTML = Number('{{p.qty}}') * Number('{
     <div class="bg-danger" style="position: relative;">
         <img class="qr_img" src="{% static 'img/qrcode.png' %}" >
         <div style="position: absolute; bottom:-50px; right: 5px;">
-            <b>Poonam Ashish Shinde Mo******7094</b>
+            <b>Poonam Ashish Shinde Mo-7499067094</b>
         </div>
     </div>
 </div>
