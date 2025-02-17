@@ -25,28 +25,30 @@
   }
 </style>
 <div class="main_price_and_weight_btn">
-    {% for p in price_and_weight %}
-    <div class="price_and_weight_btn" id="price_and_weight_btn{{p.id}}" onclick="check_customer_sesion('{{item_id}}','{{p.id}}')">
-      <div style="display: flex; justify-content: space-between;flex-direction: column;">
-        <div><b style="color: rgb(82, 82, 82);">{{p.weight}}{{p.unit}}</b></div>
-        <div id="price{{p.item_id}}">Rs.{{p.price}}</div>
-      </div>
+  {% for p in price_and_weight %}
+  <div class="price_and_weight_btn" id="price_and_weight_btn{{p.id}}" onclick="check_customer_sesion('{{ptem_id}}','{{p.id}}')">
+    <div style="display: flex; justify-content: space-between;flex-direction: column;">
+      <div><b style="color: rgb(82, 82, 82);">{{p.weight}}{{p.unit}}</b></div>
+      <div id="price{{p.item_id}}">Rs.{{p.price}}</div>
     </div>
-    {% endfor %}
+  </div>
+  {% endfor %}
+</div>
 
-    {% for p in price_and_weight %}
+<div class="computer">
+  {% for p in price_and_weight %}
         <div id="item_detail{{p.id}}"  style="display: none;margin-top: -30px;">
           <br>
           <div style="display: grid;grid-template-columns: 1fr 2fr 1fr;gap: 0px;">
-            <div class=" "><button type="button" onclick="minus('{{i.id}}','{{p.price}}','{{p.sell_minimum_quantity}}')" class="btn btn-success px-3">-</button></div>
+            <div class=" "><button type="button" onclick="minus('{{p.id}}','{{p.price}}','{{p.sell_minimum_quantity}}')" class="btn btn-success px-3">-</button></div>
             <div class="">
-              <input type="text" name="qty" style="width: 60px; text-align: center;" id="qty{{i.id}}" value="{{p.sell_minimum_quantity}}" >{{p.unit}}
+              <input type="text" name="qty" style="width: 60px; text-align: center;" id="qty{{p.id}}" value="{{p.sell_minimum_quantity}}" >{{p.unit}}
             </div>
-            <div class=""><button type="button" onclick="plus('{{i.id}}','{{p.price}}')" class="btn btn-success px-3">+</button></div>
+            <div class=""><button type="button" onclick="plus('{{p.id}}','{{p.price}}')" class="btn btn-success px-3">+</button></div>
           </div>
           <div class=" my-4 text-center" style="display: grid;grid-template-columns: 2fr 3fr;">
             <div class="text-center">
-                <b>Rs. </b><b id="total_amount{{i.id}}">{{p.price}}</b>
+                <b>Rs. </b><b id="total_amount{{p.id}}">{{p.price}}</b>
             </div>
               <div class=""> <button type="submit" class="btn btn-danger btn-sm" onclick="add_to_cart('{{i.id}}','{{p.id}}')">Add To Cart</button> </div>
           </div>
@@ -56,13 +58,13 @@
 </div>
 
 
-<!-- <div id="item_detail{{i.id}}"  {% if n.qty == 0 %} style="display: none;"{% endif %}>
+<!-- <div id="item_detail{{p.id}}"  {% if n.qty == 0 %} style="display: none;"{% endif %}>
     <div class=" my-4 text-center" style="display: grid;grid-template-columns: 1fr 2fr 1fr;">
-      <div class=" "><button type="button" onclick="minus('{{i.id}}','{{i.price}}')" class="btn btn-success px-3">-</button></div>
+      <div class=" "><button type="button" onclick="minus('{{p.id}}','{{p.price}}')" class="btn btn-success px-3">-</button></div>
       <div class="">
-          <input type="text" name="qty" style="width: 60px; text-align: center;" id="qty{{i.id}}" value="{% if n.qty != 0 %}{{n.qty}}{% else %}1{% endif %}" oninput="oninput_add_to_cart('{{i.id}}','{{i.price}}')" >
+          <input type="text" name="qty" style="width: 60px; text-align: center;" id="qty{{p.id}}" value="{% if n.qty != 0 %}{{n.qty}}{% else %}1{% endif %}" oninput="oninput_add_to_cart('{{p.id}}','{{p.price}}')" >
       </div>
-      <div class=""><button type="button" onclick="plus('{{i.id}}','{{i.price}}')" class="btn btn-success px-3">+</button></div>
+      <div class=""><button type="button" onclick="plus('{{p.id}}','{{p.price}}')" class="btn btn-success px-3">+</button></div>
     </div>
   </div> -->
 

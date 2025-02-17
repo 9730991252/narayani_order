@@ -193,8 +193,10 @@ last_prise_and_weight_id = ''
 function check_customer_sesion(p_id, prise_and_weight_id){
     if (last_prise_and_weight_id){
         document.getElementById('item_detail'+last_prise_and_weight_id).style.display = 'none';
+        document.getElementById('price_and_weight_btn'+last_prise_and_weight_id).style.backgroundColor = '#FFFFFF';
     }
     document.getElementById('item_detail'+prise_and_weight_id).style.display = 'unset';
+    document.getElementById('price_and_weight_btn'+prise_and_weight_id).style.backgroundColor = '#FFC107';
     last_prise_and_weight_id = prise_and_weight_id
 
 }
