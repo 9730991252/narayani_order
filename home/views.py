@@ -34,6 +34,8 @@ def index(request):
                 
         total_r = r.count() 
         
+        
+        
         it.append({
             'id':i.id,
             'name':i.name,
@@ -47,8 +49,8 @@ def index(request):
             'status':i.status,
             
             
-            'average_ratings': (avrage_r['star__avg'] if avrage_r['star__avg'] else 0),
-            'total_r':total_r,
+            'average_ratings': (avrage_r['star__avg'] if avrage_r['star__avg'] else ''),
+            'total_r':f'{total_r} Ratings' if total_r is not 0 else '',
             
             'all_r':rattings.objects.filter(item_id=i.id),
             
@@ -149,6 +151,30 @@ def login(request):
         else:
             return redirect('/')
     return render(request, 'home/login.html')
+
+def item_details(request, id):
+    customer = ''
+    customer_id = 0
+    total_amount = 0
+        
+    session_id = get_session_id(request)
+    
+    total_amount = total_price(session_id)
+                
+    c = Cart.objects.all()
+    for c in c:
+        if c.date != date.today():
+            c.delete()
+        else:
+            print('no')
+    contaxt={
+        'category': Category.objects.filter(status=1),
+        'customer':customer,
+        'total_amount':total_amount,
+        'cart_qty':Cart.objects.filter(session_id=session_id).count(),
+        'i':Item.objects.filter(id=id).first(),
+    }
+    return render(request, 'home/item_details.html', contaxt)
 
 def logout(request):
     if request.session.has_key('owner_mobile'):

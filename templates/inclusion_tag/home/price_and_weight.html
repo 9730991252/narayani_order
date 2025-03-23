@@ -11,8 +11,10 @@
       display: grid;
       gap: 10px;
       grid-template-columns: 1fr 1fr 1fr;
+      width: 30px;
+
     }
-    @media only screen and (max-width: 450px) {
+    @media only screen and (max-width: 390px) {
       .main_price_and_weight_btn{
         padding-left: 1px;
         padding-right: 1px;
@@ -35,7 +37,7 @@
   {% endfor %}
 </div>
 
-<div class="computer">
+<div class="computer" style="margin: 0 auto;width: 300px;">
   {% for p in price_and_weight %}
         <div id="item_detail{{p.id}}"  style="display: none;margin-top: -30px;">
           <br>
