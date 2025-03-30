@@ -2,8 +2,6 @@
 {% block head %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
-
 {% endblock head %}
 {% block content %}
 {% include 'include/navbar.html' %}
@@ -11,6 +9,262 @@
 {% load home_tag %}
 {% load embed_video_tags %}
 
+<style>
+    .container{
+    display: flex;
+        width: 100%;
+        height: 100%;
+    }
+    .image_box{
+      margin: 0 auto;
+      margin-top: 10px;
+      width: 300px;
+      height: 400px;
+      .carousel{
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        transition: transform 0.5s ease;
+        position: relative;
+      }
+      .carousel img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    @media only screen and (max-width: 500px) {
+      .container{
+        flex-direction: column;
+      }
+}
+</style>
+
+<div class="container">
+    <div class="image_box">
+             <!-- img -->
+             <div id="carouselExampleDark" class="carousel carousel-dark slide">
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  {% if i.image2.url != None %}
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 1"></button>
+                  {% endif %}
+                  {% if i.image3.url != None %}
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 2"></button>
+                  {% endif %}
+                  {% if i.image4.url != None %}
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 3"></button>
+                  {% endif %}
+                  {% if i.image5.url != None %}
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="4" aria-label="Slide 4"></button>
+                  {% endif %}
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="10000">
+                      <img src="{% if i.image1.url != None %}{{i.image1.url}}{% endif %}" class="d-block w-100" alt="...">
+                    </div>
+                    {% if i.image2.url != None %}
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img src="{{i.image2.url}}" class="d-block w-100" alt="...">
+                    </div>
+                    {% endif %}
+                    {% if i.image3.url != None %}
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img src="{{i.image3.url}}" class="d-block w-100" alt="...">
+                    </div>
+                    {% endif %}
+                    {% if i.image4.url != None %}
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img src="{{i.image4.url}}" class="d-block w-100" alt="...">
+                    </div>
+                    {% endif %}
+                    {% if i.image5.url != None %}
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img src="{{i.image5.url}}" class="d-block w-100" alt="...">
+                    </div>
+                    {% endif %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+              <!-- endimg -->
+
+            </div>
+            <div class="text-center">
+
+      <div id="video{{i.id}}" style="display: none;">{% video i.youtube_url '280x215'  %}</div>
+          <!-- name -->
+           <div class="p-2">
+              <div class="" style="display: flex; gap: 10px;justify-content: space-evenly;">
+                  <h5><b style="color: #303030;">{{i.name}}</b></h5>
+              </div>
+               <div class="" style="display: flex; gap: 10px;justify-content: space-evenly;">
+                  {% if i.youtube_url != None %}
+                      <div onclick="see_video('{{i.id}}')"><i class="fa fa-youtube-play" style="font-size:25px;color:red"></i></div>
+                  {% endif %}
+                  <div><a href="https://api.whatsapp.com/send?phone=&text=https://www.shipiamti.com/" target="_blank"><i class="fa-brands fa-whatsapp" style="color: green; font-size: 25px;"></i></a></div>
+
+                  </div>
+          </div>
+          <!-- endname -->
+          <div class="footer" style="width: fit-content;margin: 0 auto;">
+            {% price_and_weight i.id  %}
 
 
+            <div id="mob{{i.id}}" style="display: none;">
+                <h6>Enter Delivery Information </h6>
+                <input type="number" style="width: 200px;margin: 0 auto;border: 1px solid black;" oninput="check_number('{{i.id}}')" id="mo{{i.id}}" class="form-control" placeholder="Enter Mobile Number " >
+                <button style="display: none;" type="button" class="mt-2 btn btn-danger" id="submit_btn{{i.id}}" onclick="check_customer('{{i.id}}')">Submit</button>
+              </div> 
+
+            <div id="qty_box{{i.id}}"></div>
+          </div>
+          <div id="description{{i.id}}">
+            <br>
+            <p class="text-center" style="width: 350px;">{{i.description}}</p>  
+            {% video i.youtube_url '280x200'  %}
+       </div>
+
+      
+    </div>
+
+  </div>
+  <br><br><br>
+  <style>
+  .main_footer{
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #d3d3d3;
+      padding: 10px;
+      text-align: center;
+      right: 0;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      align-items: center;
+  }
+</style>
+<div class="main_footer">
+
+  <div><input type="text" class="form-control w-100" placeholder="Search Item"></div>
+  <div> <b>Rs.</b><b id="total_amount">{{total_amount}}</b></div>
+  <div><a href="/order/cart/" id="place_order_btn" class="btn btn-warning btn-sm"> <i class="fa-solid fa-cart-shopping"></i> <b id="cart_qty" style="border-radius: 50%; padding: 2px;background-color: red;color: white;">{{cart_qty}}</b> </a></div>
+
+</div>
+<script>
+  see_video_last_id = ''
+function see_video(id){
+  if(see_video_last_id == id){
+      document.getElementById('video'+id).style.display = 'none';
+  }
+  else{
+      document.getElementById('video' + id).style.display = 'unset'; 
+  }
+  see_video_last_id = id
+  console.log(see_video_last_id)
+}
+function read_more(id){
+  document.getElementById('main_description'+id).style.display = 'none';
+  document.getElementById('description'+id).style.display = 'unset';
+}
+function read_less(id){
+  document.getElementById('main_description'+id).style.display = 'unset';
+  document.getElementById('description'+id).style.display = 'none';
+}
+
+last_price_and_weight_id = ''
+last_qty_box_id = ''
+
+function add_to_cart(item_id, prise_and_weight_id, customer_id) {
+  qty = document.getElementById('qty'+prise_and_weight_id).value
+  $.ajax({
+      url: "{% url 'add_to_cart' %}",
+      method: "GET",
+      data:{
+          item_id:item_id,
+          qty:qty,
+          prise_and_weight_id:prise_and_weight_id,
+          customer_id:customer_id
+      },
+      success: function(res){
+          document.getElementById('total_amount').innerText = res.total_amount
+          document.getElementById('qty_box'+item_id).innerHTML = `<div class="mt-2 alert alert-success">This Item is added to Cart</div>`                    
+          document.getElementById('place_order_btn').style.display = 'unset';
+          document.getElementById('cart_qty').innerText = res.cart_qty;
+      }
+  });
+}
+
+
+function check_number(id){
+  mobile=document.getElementById('mo'+id).value;
+          if (mobile.length <= 9 ){
+          document.getElementById('mo'+id).style.borderColor ='green';return false;
+          document.getElementById('submit_btn'+id).style.display = 'none';
+      }
+      if (mobile.length >= 11 ){
+          alert('only 10 digit number ')
+          document.getElementById('mo'+id).value='';
+          document.getElementById('submit_btn'+id).style.display = 'none';
+      }
+      if (mobile.length == 10 ){
+              document.getElementById('submit_btn'+id).style.display = 'unset';
+              
+              document.getElementById('mo'+id).style.borderColor ='';return true;
+              
+          }
+      }
+      
+last_prise_and_weight_id = ''
+function check_customer_sesion(p_id, prise_and_weight_id){
+  if (last_prise_and_weight_id){
+      document.getElementById('item_detail'+last_prise_and_weight_id).style.display = 'none';
+      document.getElementById('price_and_weight_btn'+last_prise_and_weight_id).style.backgroundColor = '#FFFFFF';
+  }
+  document.getElementById('item_detail'+prise_and_weight_id).style.display = 'unset';
+  document.getElementById('price_and_weight_btn'+prise_and_weight_id).style.backgroundColor = '#FFC107';
+  last_prise_and_weight_id = prise_and_weight_id
+
+}
+
+function plus(id, price){
+  var qty = document.getElementById('qty'+id).value
+  qty++;
+  document.getElementById('qty'+id).value=qty;
+  p=qty*price
+  document.getElementById('total_amount'+id).innerText=p;
+      //speak code
+      
+  const msg = new SpeechSynthesisUtterance;
+  msg.text=qty;
+  
+  msg.voice=speechSynthesis.getVoices()[1];
+  speechSynthesis.speak(msg);
+
+}
+
+function minus(id, price, sell_minimum_quantity){
+  var qty = document.getElementById('qty'+id).value
+if(qty > sell_minimum_quantity){
+  qty--;
+  document.getElementById('qty'+id).value=qty;
+  p=qty*price
+  document.getElementById('total_amount'+id).innerText=p;
+          //speak code
+          
+      const msg = new SpeechSynthesisUtterance;
+      msg.text=qty;
+      
+      msg.voice=speechSynthesis.getVoices()[1];
+      speechSynthesis.speak(msg);
+}
+}
+</script>
 {% endblock content %}
