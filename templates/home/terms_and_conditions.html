@@ -1,0 +1,115 @@
+{% extends 'home/base.html' %}
+
+{% block head %}
+<title>Terms and Conditions | NarayaniOrder.com</title>
+<style>
+  body {
+    background: #f9f9f9;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .terms-container {
+    max-width: 900px;
+    margin: 50px auto;
+    background: #ffffff;
+    padding: 40px 50px;
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
+  }
+
+  h1 {
+    font-size: 36px;
+    color: #2d3748;
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+    color: #2b6cb0;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+
+  p, li {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #4a5568;
+    margin-bottom: 15px;
+  }
+
+  ul {
+    padding-left: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .terms-container {
+      padding: 25px 20px;
+    }
+
+    h1 {
+      font-size: 28px;
+    }
+  }
+</style>
+{% endblock head %}
+
+{% block content %}
+{% include 'include/navbar.html' %}
+
+<div class="terms-container">
+  <h1>Terms and Conditions</h1>
+
+  <p>
+    For the purpose of these Terms and Conditions, the term "we", "us", "our" refers to <strong>NarayaniOrder.com</strong>, located at Veet, Karmala, Solapur, Maharashtra 413203. The terms "you", "your", "user", or "visitor" refer to any person visiting our website and/or agreeing to purchase from us.
+  </p>
+
+  <h2>Website Use</h2>
+  <p>
+    Your use of the website and/or purchase from us is governed by the following terms and conditions:
+  </p>
+
+  <ul>
+    <li>The content of this website is subject to change without prior notice.</li>
+    <li>We do not provide any warranty or guarantee as to the accuracy, completeness, or suitability of the information and materials found on this website.</li>
+    <li>You acknowledge that information may contain inaccuracies or errors, and we expressly exclude liability to the fullest extent permitted by law.</li>
+    <li>Your use of any information is entirely at your own risk.</li>
+  </ul>
+
+  <h2>Responsibility</h2>
+  <p>
+    It is your own responsibility to ensure that any products, services, or information available through this website meet your specific requirements.
+  </p>
+
+  <h2>Ownership and Intellectual Property</h2>
+  <p>
+    All materials including design, layout, look, appearance, and graphics are owned or licensed by us. Reproduction is prohibited except in accordance with the copyright notice.
+  </p>
+  <p>
+    Trademarks not owned by or licensed to us are acknowledged on the website.
+  </p>
+
+  <h2>Restrictions</h2>
+  <p>
+    Unauthorized use of this website may give rise to a claim for damages and/or be a criminal offense.
+  </p>
+
+  <h2>External Links</h2>
+  <p>
+    Our website may include links to other websites for informational purposes. You may not create a link to our website without prior written consent.
+  </p>
+
+  <h2>Legal Jurisdiction</h2>
+  <p>
+    Any dispute arising from the use of our website or products is subject to the laws of India.
+  </p>
+
+  <h2>Payment and Transaction Disclaimer</h2>
+  <p>
+    We shall not be liable for any transaction failure due to authorization decline, card limit issues, or other payment gateway-related matters.
+  </p>
+</div>
+{% include 'home/index_footer.html' %}
+{% endblock content %}

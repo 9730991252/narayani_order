@@ -1,0 +1,94 @@
+{% extends 'home/base.html' %}
+
+{% block head %}
+<title>Shipping Policy | NarayaniOrder.com</title>
+<style>
+  body {
+    background: linear-gradient(to bottom right, #edf2f7, #ffffff);
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .shipping-container {
+    max-width: 850px;
+    margin: 60px auto;
+    background-color: #fff;
+    padding: 40px 50px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 36px;
+    color: #2d3748;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 10px;
+  }
+
+  p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #4a5568;
+    margin-bottom: 20px;
+  }
+
+  .highlight {
+    color: #2b6cb0;
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .shipping-container {
+      padding: 25px 20px;
+    }
+
+    h1 {
+      font-size: 28px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+  }
+</style>
+{% endblock head %}
+
+{% block content %}
+{% include 'include/navbar.html' %}
+
+<div class="shipping-container">
+  <h1>Shipping Policy</h1>
+
+  <p>
+    For <span class="highlight">International buyers</span>, orders are shipped and delivered through registered international courier companies and/or international speed post only.
+  </p>
+
+  <p>
+    For <span class="highlight">Domestic buyers</span>, orders are shipped through registered domestic courier companies and/or speed post only.
+  </p>
+
+  <p>
+    Orders are typically shipped within <span class="highlight">3–5 days</span>, or as per the delivery date agreed upon during order confirmation. Delivery of the shipment is subject to the norms of the courier company or postal service.
+  </p>
+
+  <p>
+    <span class="highlight">NarayaniOrder.com</span> is not responsible for delays caused by courier companies or postal authorities. We guarantee dispatch of the consignment to the courier/post within 3–5 days from order and payment confirmation, or as per agreed delivery schedule.
+  </p>
+
+  <p>
+    Delivery will be made to the address provided by the buyer at the time of order. Confirmation of delivery will be sent to the buyer's registered email ID.
+  </p>
+
+  <p>
+    For any issues or support regarding shipping or services, please contact our helpdesk at:
+  </p>
+
+  <p>
+    <strong>Phone:</strong> <a href="tel:+917499067094" class="highlight">+91 7499067094</a><br>
+    <strong>Email:</strong> <a href="mailto:ashishshinde0503@gmail.com" class="highlight">ashishshinde0503@gmail.com</a>
+  </p>
+</div>
+{% include 'home/index_footer.html' %}
+
+{% endblock content %}

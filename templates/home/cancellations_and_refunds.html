@@ -1,0 +1,149 @@
+{% extends 'home/base.html' %}
+
+{% block head %}
+<title>Cancellations & Refunds | NarayaniOrder.com</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(145deg, #f0f4f8, #ffffff);
+    margin: 0;
+    padding: 0;
+  }
+
+  .refund-container {
+    max-width: 900px;
+    margin: 60px auto;
+    background: #ffffff;
+    padding: 40px 50px;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .refund-container:hover {
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 30px;
+    color: #2d3748;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 10px;
+  }
+
+  h2 {
+    color: #2b6cb0;
+    font-size: 24px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+
+  p, li {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #4a5568;
+  }
+
+  ul {
+    padding-left: 20px;
+  }
+
+  .highlight {
+    font-weight: bold;
+    color: #2c5282;
+  }
+
+  .notice-box {
+    background-color: #ebf8ff;
+    border-left: 6px solid #3182ce;
+    padding: 16px 24px;
+    border-radius: 12px;
+    margin-top: 30px;
+  }
+
+  .notice-box p {
+    margin: 0;
+  }
+
+  a {
+    color: #3182ce;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .refund-container {
+      padding: 25px 20px;
+    }
+
+    h1 {
+      font-size: 28px;
+    }
+
+    h2 {
+      font-size: 20px;
+    }
+
+    p, li {
+      font-size: 16px;
+    }
+  }
+</style>
+{% endblock head %}
+
+{% block content %}
+{% include 'include/navbar.html' %}
+
+<div class="refund-container">
+  <h1>Cancellations & Refunds</h1>
+
+  <p>
+    At <span class="highlight">NarayaniOrder.com</span>, we value our customers and aim to deliver a smooth shopping experience. Our cancellation and refund policy is simple, clear, and fair to protect both our customers and sellers.
+  </p>
+
+  <h2>📦 Cancellation Policy</h2>
+  <ul>
+    <li>Orders can be cancelled within <span class="highlight">3–5 days</span> of purchase.</li>
+    <li>Cancellation may not be possible if the item has already been shipped or processed by the vendor.</li>
+    <li>Perishable products (e.g., flowers, eatables) are <span class="highlight">non-cancellable</span> once prepared or dispatched.</li>
+  </ul>
+
+  <h2>💸 Refund & Replacement Policy</h2>
+  <ul>
+    <li>Refunds/replacements are applicable only in case of <span class="highlight">damaged, defective, or poor-quality products</span>.</li>
+    <li>Customers must report issues within <span class="highlight">3–5 days</span> of receiving the product.</li>
+    <li>Refunds will be processed after merchant verification.</li>
+  </ul>
+
+  <h2>🔍 Not As Described?</h2>
+  <p>
+    If your order doesn’t match the description or your expectations, notify us within 3–5 days. Our team will evaluate the complaint and take necessary steps for refund or exchange.
+  </p>
+
+  <h2>🛠 Warranty Items</h2>
+  <p>
+    For products that include a manufacturer's warranty, please contact the respective brand’s service center directly for resolution.
+  </p>
+
+  <h2>⏳ Refund Timeline</h2>
+  <ul>
+    <li>Approved refunds will be initiated within <span class="highlight">3–5 business days</span>.</li>
+    <li>Refunds are processed back to your original payment method (e.g., bank, UPI, wallet).</li>
+  </ul>
+
+  <div class="notice-box">
+    <p>
+      Need help? Reach out to our <a href="/contact">Customer Support</a> team for further assistance.
+    </p>
+  </div>
+</div>
+
+
+{% include 'home/index_footer.html' %}
+{% endblock content %}

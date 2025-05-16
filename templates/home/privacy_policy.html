@@ -1,0 +1,131 @@
+{% extends 'home/base.html' %}
+
+{% block head %}
+<title>Privacy Policy | NarayaniOrder.com</title>
+<style>
+  body {
+    background: #f7fafc;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .privacy-container {
+    max-width: 900px;
+    margin: 60px auto;
+    background: #ffffff;
+    padding: 40px 50px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  }
+
+  h1 {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2d3748;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    color: #2b6cb0;
+  }
+
+  p, li {
+    font-size: 17px;
+    color: #4a5568;
+    line-height: 1.7;
+    margin-bottom: 15px;
+  }
+
+  ul {
+    padding-left: 20px;
+  }
+
+  a {
+    color: #3182ce;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .privacy-container {
+      padding: 25px 20px;
+    }
+
+    h1 {
+      font-size: 28px;
+    }
+  }
+</style>
+{% endblock head %}
+
+{% block content %}
+{% include 'include/navbar.html' %}
+
+<div class="privacy-container">
+  <h1>Privacy Policy</h1>
+
+  <p>
+    This privacy policy sets out how <strong>NarayaniOrder.com</strong> uses and protects any information that you provide when you visit or purchase from our website.
+  </p>
+
+  <p>
+    NarayaniOrder.com is committed to ensuring your privacy is protected. If we ask you to provide identifiable information when using this website, it will only be used in accordance with this privacy statement.
+  </p>
+
+  <p>
+    This policy may be updated periodically. Please check this page to stay informed of any changes.
+  </p>
+
+  <h2>Information We May Collect</h2>
+  <ul>
+    <li>Name</li>
+    <li>Contact information including email address</li>
+    <li>Demographic details like postcode, preferences and interests</li>
+    <li>Other relevant information for customer surveys and/or offers</li>
+  </ul>
+
+  <h2>What We Do with the Information</h2>
+  <ul>
+    <li>Internal record keeping</li>
+    <li>Improving our products and services</li>
+    <li>Sending promotional emails using the provided email address</li>
+    <li>Occasional market research via email, phone, or mail</li>
+    <li>Website customization based on your interests</li>
+  </ul>
+
+  <h2>Security of Your Data</h2>
+  <p>We are committed to ensuring that your data is secure and have implemented suitable physical, electronic, and managerial procedures to safeguard it.</p>
+
+  <h2>How We Use Cookies</h2>
+  <p>
+    Cookies are small files that help analyze web traffic and personalize web interactions. We use them to identify frequently visited pages and enhance user experience.
+  </p>
+  <p>
+    You can choose to accept or decline cookies. Most browsers accept cookies by default, but you can modify settings to decline them. This may limit full website functionality.
+  </p>
+
+  <h2>Controlling Your Personal Information</h2>
+  <ul>
+    <li>Opt out of direct marketing via form checkboxes</li>
+    <li>Withdraw consent any time via email: <a href="mailto:ashishshinde0503@gmail.com">ashishshinde0503@gmail.com</a></li>
+    <li>We do not sell or share your information unless required by law</li>
+  </ul>
+
+  <h2>Corrections or Questions</h2>
+  <p>If any information we hold about you is incorrect, please contact us:</p>
+  <ul>
+    <li><strong>Address:</strong> Veet, Karmala, Solapur, Maharashtra – 413203</li>
+    <li><strong>Phone:</strong> <a href="tel:+917499067094">+91 7499067094</a></li>
+    <li><strong>Email:</strong> <a href="mailto:ashishshinde0503@gmail.com">ashishshinde0503@gmail.com</a></li>
+  </ul>
+</div>
+{% include 'home/index_footer.html' %}
+
+{% endblock content %}

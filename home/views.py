@@ -11,6 +11,24 @@ from django.contrib import messages
 # Create your views here.
 def get_session_id(request):
     return request.session.session_key
+
+
+def cancellations_and_refunds(request):
+    return render(request, 'home/cancellations_and_refunds.html')
+
+
+def contact_us_view(request):
+    return render(request, 'home/contact_us.html')
+
+def shipping_policy_view(request):
+    return render(request, 'home/shipping_policy.html')
+
+def privacy_policy_view(request):
+    return render(request, 'home/privacy_policy.html')
+
+def terms_and_conditions_view(request):
+    return render(request, 'home/terms_and_conditions.html')
+
 def index(request):
     customer = ''
     customer_id = 0

@@ -1,0 +1,10 @@
+{% extends 'home/base.html' %}
+{% block head %}
+{% endblock head %}
+{% block content %}
+{% include 'include/navbar.html' %}
+
+
+{% include 'home/index_footer.html' %}
+
+{% endblock content %}
