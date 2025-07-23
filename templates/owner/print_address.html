@@ -14,7 +14,7 @@
     }
     .print_div{
         padding: 10px;
-        height: 150mm;
+        height: 150mm !important;
         width: 90mm;
         margin: auto;
         
@@ -73,15 +73,15 @@
             <div class="" style="position: absolute;top: 10px;right: 5px;height: 25px; width: 80px; border: 1px solid black;"></div>
             <div class="address p-2" style="border-top: 1px solid black;">
                 <h6><b style="font-weight: 900;">To ,</b></h6>
-                <textarea rows="8" oninput="check_address()" id="address" placeholder="Enter Address Here"></textarea>
+                <textarea rows="7" oninput="check_address()" id="address" placeholder="Enter Address Here"></textarea>
             </div>
             <div class="owner_detail container" style=" margin-top: 10px; padding-top: 0px; border-top: 1px solid black;">
-                <div style="margin-bottom: -15px; scale: 0.9; font-weight: 700;position: relative;">
-                    <div style="font-weight: 600;margin-bottom: -7px;position: absolute;margin-left: -15px;"><h6><b>From</b>,</h6></div>
-                    <br>
-                    <p>Narayaniorder.com</p>
-                    <p style="margin-top: -15px;">Poonam Ashish Shinde <br>A/p-Veet, Tal-KARMALA, Dist-Solapur, Maharashtra-413203</p>
-                    <p style="margin-top: -15px;">Mo- 7499067094</p>
+                <div class="address p-2" style="border-top: 1px solid black;">
+                    <h6><b style="font-weight: 900;">From,</b></h6>
+                    <textarea rows="5" oninput="check_address()" id="address" placeholder="Enter Address Here">Narayaniorder.com
+Poonam Ashish Shinde 
+A/p-Veet, Tal-KARMALA, Dist-Solapur, Maharashtra-413203
+Mo- 7499067094</textarea>
                 </div>
             </div>
             <div class="" style="border-top: 1px solid black; display: flex;gap: 10px;justify-content: center;align-items: center;">
