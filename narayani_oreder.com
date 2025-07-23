@@ -1,8 +1,8 @@
 root
 cd narayani_order
 git pull
- systemctl daemon-reload
- systemctl restart narayani_order.com.gunicorn
+systemctl daemon-reload
+systemctl restart narayani_order.com.gunicorn
 exit
 
 git clone https://github.com/9730991252/narayani_order.git
